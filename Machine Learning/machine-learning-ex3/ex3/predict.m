@@ -21,12 +21,25 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% Layer 1 input layer we add one column of 1s
+a1 = [ones(m, 1),X];
 
+% Layer 2 hidden layer we perform one logistic regession unit
+z2 = a1 * Theta1';
+a2 = sigmoid(z2);
+% Then we add a column of 1s
+a2 = [ones(m, 1), a2];
 
+% Layer 3 output layer, which we will use the result to determine the
+% the perdiction
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
 
+% looking at how max function works, we can get indices by the output of the function
+[M,I] = max(a3, [], 2);
 
-
-
+% We reassign p to equal the indices which are the predictions
+p = I;
 
 
 % =========================================================================
