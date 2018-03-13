@@ -11,7 +11,7 @@ public class biggerIsGreater {
     }
 
     public static int alphaToIndex(char alpha) {
-        alphaToIndex(Character.toString(alpha));
+        return alphaToIndex(Character.toString(alpha));
     }
 
     public static boolean isMax(String alpha) {
@@ -41,10 +41,12 @@ public class biggerIsGreater {
         for(int i = 0; i < array.length; i++){
 
         }
+        return "";
     }
 
     public static String highestLex(String alpha){
         char [] array = alpha.toCharArray();
+        return "";
     }
 
     public static void main(String[] args) {
