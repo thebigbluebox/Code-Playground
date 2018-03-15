@@ -9,7 +9,21 @@ public class matrixUtils {
         Random rand = new Random();
         for(int i = 0; i < x; i ++){
             for(int j = 0; j < y; j++){
-                result[i][j] = rand.nextInt();
+                if(i == 0 && j == 0){
+                    result[i][j] = 100;
+                }
+                else if(i == (x-1) && j == 0){
+                    result[i][j] = 200;
+                }
+                else if(i == 0 && j == (y-1)){
+                    result[i][j] = 300;
+                }
+                else if(i == (x-1) && j == (y-1)){
+                    result[i][j] = 400;
+                }
+                else{
+                    result[i][j] = rand.nextInt(99);
+                }
             }
         }
 
@@ -26,6 +40,6 @@ public class matrixUtils {
     }
 
     public static void main(String[] args){
-        printMatrix(generateIntMatrix(4,5));
+        printMatrix(generateIntMatrix(6,6));
     }
 }
