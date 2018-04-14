@@ -1,9 +1,35 @@
 # Thanks to https://stackoverflow.com/questions/2598437/how-to-implement-a-binary-tree
 class Node:
     def __init__(self, val):
-        self.l = None
-        self.r = None
-        self.v = val
+        self.__l = None
+        self.__r = None
+        self.__p = None
+        self.__v = val
+
+
+    def set_left(self, left):
+        self.__l = left
+
+    def get_left(self):
+        return self.__l
+
+    def set_right(self, right):
+        self.__r = right
+
+    def get_right(self):
+        return self.__r
+
+    def set_value(self, value):
+        self.__v = value
+
+    def get_value(self):
+        return self.__v
+
+    def set_parent(self, parent):
+        self.__p = parent
+
+    def get_parent(self):
+        return self.__p
 
 class Tree:
     def __init__(self):
@@ -19,16 +45,20 @@ class Tree:
             self._add(val, self.root)
 
     def _add(self, val, node):
-        if(val < node.v):
-            if(node.l != None):
-                self._add(val, node.l)
+        if(val < node.get_value()):
+            if(node.get_left() != None):
+                self._add(val, node.get_left())
             else:
-                node.l = Node(val)
+                leftVal = Node(val)
+                leftVal.set_parent(node)
+                node.set_left(leftVal)
         else:
-            if(node.r != None):
-                self._add(val, node.r)
+            if(node.get_right() != None):
+                self._add(val, node.get_right())
             else:
-                node.r = Node(val)
+                rightVal = Node(val)
+                rightVal.set_parent(rightVal)
+                node.set_right(rightVal)
 
     def find(self, val):
         if(self.root != None):
@@ -37,12 +67,12 @@ class Tree:
             return None
 
     def _find(self, val, node):
-        if(val == node.v):
+        if(val == node.get_value()):
             return node
-        elif(val < node.v and node.l != None):
-            self._find(val, node.l)
-        elif(val > node.v and node.r != None):
-            self._find(val, node.r)
+        elif(val < node.get_value() and node.get_left() != None):
+            self._find(val, node.get_left())
+        elif(val > node.get_value() and node.get_right() != None):
+            self._find(val, node.get_right())
 
     def deleteTree(self):
         # garbage collector will do this for us.
@@ -54,9 +84,9 @@ class Tree:
 
     def _printTree(self, node):
         if(node != None):
-            self._printTree(node.l)
-            print(str(node.v) + ' ')
-            self._printTree(node.r)
+            self._printTree(node.get_left())
+            print(str(node.get_value()) + ' ')
+            self._printTree(node.get_right())
 
 
 tree = Tree()
@@ -66,7 +96,5 @@ tree.add(0)
 tree.add(8)
 tree.add(2)
 tree.printTree()
-print ((tree.find(3)).v)
-print (tree.find(10))
 tree.deleteTree()
 tree.printTree()
