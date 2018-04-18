@@ -1,20 +1,20 @@
 # The individual Nodes
 class Node:
     def __init__(self, initdata):
-        self.data = initdata
-        self.next = None
+        self.__data = initdata
+        self.__next = None
 
     def getData(self):
-        return self.data
+        return self.__data
 
     def getNext(self):
-        return self.next
+        return self.__next
 
     def setData(self, newdata):
-        self.data = newdata
+        self.__data = newdata
 
     def setNext(self, newnext):
-        self.next = newnext
+        self.__next = newnext
 
 
 # The unordered list that actually implements the Node and linked list

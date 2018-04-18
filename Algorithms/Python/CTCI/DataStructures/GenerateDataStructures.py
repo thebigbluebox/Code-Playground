@@ -1,6 +1,11 @@
 from DataStructures.LinkedList import *
 from DataStructures.BinaryTree import *
+
 from random import random
+
+import queue
+
+
 def generate_symmetrical_linkedlist(length):
     linkedlist = UnorderedList()
     for index in range (1, length):
@@ -16,19 +21,68 @@ def generate_random_linkedlist(length):
         linkedlist.add(int(random()*10))
     return linkedlist
 
-def geneate_perfect_bst(levels):
-    num_of_nodes = 2**levels - 1
-    bst = Tree()
-    is_even = False
-    for index in range (0,num_of_nodes):
-        bst.add(int(num_of_nodes/2))
-    return bst
+def geneate_bst():
+    tree = Tree()
+    tree.add(8)
+    tree.add(10)
+    tree.add(4)
+    tree.add(20)
+    tree.add(6)
+    tree.add(2)
+    return tree
 
+def inOrderTraversal(rootNode):
+    if(rootNode != None):
+        inOrderTraversal(rootNode.l)
+        print(rootNode.v)
+        inOrderTraversal(rootNode.r)
 
-# linkedlist = generate_random_linkedlist(11).head
-# while linkedlist is not None:
-#     print(linkedlist.getData())
-#     linkedlist = linkedlist.getNext()
+def preOrderTraversal(rootNode):
+    if(rootNode != None):
+        print(rootNode.v)
+        preOrderTraversal(rootNode.l)
+        preOrderTraversal(rootNode.r)
 
-bst = geneate_perfect_bst(3)
-bst.printTree()
+def postOrderTraversal(rootNode):
+    if(rootNode != None):
+        postOrderTraversal(rootNode.l)
+        postOrderTraversal(rootNode.r)
+        print(rootNode.v)
+
+def generate_adjencylist():
+    w, h = 4 , 4
+    Matrix = [[0 for x in range(w)] for y in range(h)]
+    Matrix[1][0] = 1 # x = 1, y = 0
+    Matrix[2][1] = 1
+    Matrix[0][2] = 1
+    Matrix[2][3] = 1
+    return Matrix
+
+def bfs(graph, item):
+    visitedQ = queue.Queue()
+    root = graph.getRoot()
+    root.setVisited()
+    visitedQ.put(root)
+
+    while not visitedQ.empty():
+        r = visitedQ.get()
+        if r.getVertex == item:
+            return r
+        edges = r.getAdjacent()
+        for edge in edges:
+            if not edge.getVisited():
+                edge.setVisited()
+                visitedQ.put(edge)
+
+def dfs(graph, item):
+    return __dfs(graph.getRoot(), item)
+
+def __dfs(node, item):
+    if node == None:
+        return
+    if node.getVertex == item:
+        return node
+    node.setVisited()
+    for edge in node.getAdjacent():
+        if not node.getVisited():
+            __dfs(edge, item)
