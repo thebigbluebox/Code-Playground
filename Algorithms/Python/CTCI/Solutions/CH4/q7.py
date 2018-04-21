@@ -12,8 +12,7 @@ def calculateDependencies(projects, depdencies):
     dependencygraph = result[0]
     freefloaters = result[1]
     buildOrder = freefloaters
-
-    return 0
+    return buildOrder
 
 
 def findEndNodes(projects, depencies):
@@ -27,8 +26,7 @@ def findEndNodes(projects, depencies):
             dependencygraph[build] = [need]
     # check if any of the project is not in this list
     freeFloaters = []
-    counter = 5
-    while counter > 0:
+    while projects.__len__() > 0:
         for project in projects:
             if (project not in dependencygraph.keys()):
                 freeFloaters.append(project)
@@ -48,7 +46,6 @@ def findEndNodes(projects, depencies):
                     freeFloaters.append(project)
                     dependencygraph.pop(project, None)
                     projects.remove(project)
-        counter-=1
     return [dependencygraph, freeFloaters]
 
 
