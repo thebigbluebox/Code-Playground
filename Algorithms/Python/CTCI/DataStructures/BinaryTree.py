@@ -42,22 +42,22 @@ class Tree:
         if(self.root == None):
             self.root = Node(val)
         else:
-            self._add(val, self.root)
+            self._add(val, self.root, self.root)
 
-    def _add(self, val, node):
+    def _add(self, val, node, parent):
         if(val < node.get_value()):
             if(node.get_left() != None):
-                self._add(val, node.get_left())
+                self._add(val, node.get_left(), node.get_left())
             else:
                 leftVal = Node(val)
-                leftVal.set_parent(node)
+                leftVal.set_parent(parent)
                 node.set_left(leftVal)
         else:
             if(node.get_right() != None):
-                self._add(val, node.get_right())
+                self._add(val, node.get_right(), node.get_right())
             else:
                 rightVal = Node(val)
-                rightVal.set_parent(rightVal)
+                rightVal.set_parent(parent)
                 node.set_right(rightVal)
 
     def find(self, val):
@@ -89,12 +89,10 @@ class Tree:
             self._printTree(node.get_right())
 
 
-tree = Tree()
-tree.add(3)
-tree.add(4)
-tree.add(0)
-tree.add(8)
-tree.add(2)
-tree.printTree()
-tree.deleteTree()
-tree.printTree()
+# tree = Tree()
+# tree.add(3)
+# tree.add(4)
+# tree.add(0)
+# tree.add(8)
+# tree.add(2)
+# tree.printTree()
