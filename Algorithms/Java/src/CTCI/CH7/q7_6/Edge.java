@@ -1,5 +1,7 @@
 package CTCI.CH7.q7_6;
 
+import java.util.Objects;
+
 public class Edge {
     private int hashCode;
 
@@ -12,7 +14,7 @@ public class Edge {
     }
 
     @Override
-    public boolean equals(Object edge){
+    public boolean equals(Object o){
         // self check
         if (this == o)
             return true;
@@ -22,9 +24,8 @@ public class Edge {
         // type check and cast
         if (getClass() != o.getClass())
             return false;
-        Person person = (Person) o;
+        Edge edge = (Edge) o;
         // field comparison
-        return Objects.equals(firstName, person.firstName)
-                && Objects.equals(lastName, person.lastName);
+        return Objects.equals(hashCode, edge.hashCode);
     }
 }

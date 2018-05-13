@@ -1,4 +1,3 @@
-from DataStructures.BinaryTree import *
 from DataStructures.GenerateDataStructures import geneate_bst
 import math
 def checkBalance(tree):
