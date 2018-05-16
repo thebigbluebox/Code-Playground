@@ -5,28 +5,28 @@ import copy
 
 def is_there_a_path(array):
     dictMap = {}
-    check_route(len(array) - 1, len(array[0]) - 1, array, [], dictMap)
+    check_route(len(array[0]) - 1, len(array) - 1, array, [], dictMap)
+    return dictMap
 
 
 def check_route(x, y, array, path, dictMap):
     copied_path = copy.copy(path)
 
     if x == 0 & y == 0:
-        for coord in path:
-            print(str(coord[0]) + ", " + str(coord[1]))
-        print("yes we have arrived")
+        print("we are done")
+        # for coord in path:
+        #     print(str(coord[0]) + ", " + str(coord[1]))
+        # print("yes we have arrived")
         add_nodes_to_map(path, dictMap)
-    if (x - 1) > -1 and array[y][x - 1] != -1:
+    if (x - 1) > -1 and array[y][x - 1] != 1:
         copied_path.append((y, x - 1))
         if (y, x - 1) in dictMap:
             copied_path += dictMap[(y, x - 1)]
-            print("We reused")
         check_route(x - 1, y, array, copied_path, dictMap)
-    if (y - 1) > -1 and array[y - 1][x] != -1:
+    if (y - 1) > -1 and array[y - 1][x] != 1:
         copied_path.append((y - 1, x))
         if (y - 1, x) in dictMap:
             copied_path += dictMap[(y - 1, x)]
-            print("We reused")
         check_route(x, y - 1, array, copied_path, dictMap)
 
 
@@ -36,17 +36,14 @@ def add_nodes_to_map(node_list, dictMap):
 
 
 def generate_map():
-    Matrix = [[0 for x in range(4)] for y in range(4)]
-    Matrix[0][1] = -1
-    Matrix[0][2] = -1
-    Matrix[1][2] = -1
+    Matrix = [[0 for y in range(4)] for x in range(5)]
+    Matrix[0][1] = 1
+    Matrix[0][2] = 1
+    Matrix[1][2] = 1
     # Matrix[2][2] = -1
-    Matrix[3][1] = -1
+    Matrix[3][1] = 1
 
     return Matrix
-
-
-# def is_there_a_path_memento(array):
 
 
 def print_matrix(Matrix):

@@ -10,7 +10,7 @@ def getStairsCombination(n):
     if (n < 4) & (n > 0):
         return memo[n]
     else:
-        for x in range(4, n+1):
+        for x in range(4, n + 1):
             current_memo = 0
             for step in [1, 2, 3]:
                 remainder = x - step
@@ -20,5 +20,6 @@ def getStairsCombination(n):
                     current_memo += memo[remainder]
             memo[x] = current_memo
         return memo[n]
+
 
 print(getStairsCombination(7))
