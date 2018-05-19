@@ -1,0 +1,27 @@
+from DataStructures.LinkedList import *
+myList1 = UnorderedList()
+myList2 = UnorderedList()
+myList = UnorderedList()
+myList.add(1)
+myList.add(2)
+myList.add(3)
+myList.add(4)
+myList.add(5)
+
+myList1.add_node(myList.head)
+myList1.add(9)
+myList1.add(10)
+myList1.add(11)
+myList1.add(12)
+myList1.add(13)
+myList1.add(14)
+
+myList2.add_node(myList.head)
+myList2.add(21)
+myList2.add(22)
+myList2.add(23)
+myList2.add(24)
+myList2.add(25)
+myList2.add(26)
+
+print("hello")

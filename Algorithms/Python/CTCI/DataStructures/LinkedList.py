@@ -30,6 +30,9 @@ class UnorderedList:
         temp.setNext(self.head)
         self.head = temp
 
+    def add_node(self, node):
+        self.head = node
+
     def remove(self, item):
         current = self.head
         previous = None
