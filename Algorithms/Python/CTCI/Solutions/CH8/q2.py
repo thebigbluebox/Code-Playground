@@ -1,6 +1,5 @@
 import copy
 
-
 # the sub problem here is that we can reuse the paths that we had previously accessed
 
 def is_there_a_path(array):

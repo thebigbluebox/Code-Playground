@@ -3,14 +3,23 @@
 # arrays that could have led to this tree
 from DataStructures.BinaryTree import *
 from Solutions.CH4.q3 import listOfDepth
-def bst_sequence(node_tree):
-    value = listOfDepth(testTree)
-    sequence = [];
-    for key in value.keys():
-        currentSequence = [];
-    ## Honestly we solved this in question 3, we can just permuate each level
-    ## Not going to rewrite Python's permutation class for this but we get the point
+import itertools
+import copy
 
+
+def bst_sequence(node_tree):
+    value = listOfDepth(node_tree)
+    sequences = [[]]
+    for key in value.keys():
+        permutates = list(itertools.permutations(value[key]))
+        temp_sequences = copy.deepcopy(sequences)
+        copy_a = []
+        for permutate in permutates:
+            for sequence in temp_sequences:
+                copy_a.append(sequence + list(permutate))
+        sequences = copy_a
+
+    return sequences
 
 
 testTree = Tree()
@@ -23,6 +32,6 @@ testTree.add(17)
 testTree.add(3)
 testTree.add(7)
 
-value =listOfDepth(testTree)
+value_a = bst_sequence(testTree)
 
 print('done')
