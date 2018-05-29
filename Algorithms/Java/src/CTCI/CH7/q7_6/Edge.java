@@ -14,18 +14,18 @@ public class Edge {
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object edge){
         // self check
-        if (this == o)
+        if (this == edge)
             return true;
         // null check
-        if (o == null)
+        if (edge == null)
             return false;
         // type check and cast
-        if (getClass() != o.getClass())
+        if (getClass() != edge.getClass())
             return false;
-        Edge edge = (Edge) o;
+        Edge edge_one = (Edge) edge;
         // field comparison
-        return Objects.equals(hashCode, edge.hashCode);
+        return Objects.equals(hashCode, edge_one.getHashCode());
     }
 }
